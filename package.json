@@ -1,0 +1,19 @@
+{
+  "name": "qme",
+  "version": "0.0.0",
+  "description": "Query Matching Engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "elasticsearch": "^3.0.2",
+    "gulp": "^3.8.10",
+    "lodash": "^2.4.1",
+    "mongoose": "^3.8.20",
+    "node-uuid": "^1.4.2",
+    "q": "^1.1.2"
+  }
+}

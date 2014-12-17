@@ -1,0 +1,132 @@
+POST http://westqa07.findly.com:9200/combinedprofiles_alias/CombinedProfile/_search?preference=-2047222880 HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Host: westqa07.findly.com:9200
+X-NewRelic-ID: UAIEUlVVGwEGXVJaAwg=
+X-NewRelic-Transaction: PxQBVCcnDQEBJVEkdAkBIlEEFB8EBw8RVT8=
+Content-Length: 4708
+Expect: 100-continue
+
+{
+  "from": 0,
+  "size": 24,
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "query": "developer*",
+          "fields": [
+            "Profile.ProfessionalDetail.WorkHistories.Description^1",
+            "Profile.ProfessionalDetail.WorkHistories.Description.CustomAnalyzer^1",
+            "Profile.ProfessionalDetail.WorkHistories.Employer^1",
+            "Profile.ProfessionalDetail.WorkHistories.Employer.CustomAnalyzer^1",
+            "Profile.ProfessionalDetail.WorkHistories.JobTitle^1",
+            "Profile.ProfessionalDetail.WorkHistories.JobTitle.CustomAnalyzer^1",
+            "Profile.PersonalDetail.Location.City^4",
+            "Profile.PersonalDetail.Location.Country^4",
+            "Profile.PersonalDetail.Location.PostCode^1",
+            "Profile.PersonalDetail.Location.State^4",
+            "Profile.PersonalDetail.Phone^0.5",
+            "Profile.PersonalDetail.FirstName^1",
+            "Profile.PersonalDetail.LastName^4",
+            "Profile.PersonalDetail.Email^0.5",
+            "OrganizationProfile.JoinCampaign^1",
+            "OrganizationProfile.Campaigns.Name^1",
+            "OrganizationProfile.RecruiterCampaigns.Name^1",
+            "OrganizationProfile.Notes.Content^4",
+            "OrganizationProfile.Notes.Content.CustomAnalyzer^4",
+            "OrganizationProfile.Tags^1",
+            "HrxmlProfiles.Headline^1",
+            "HrxmlProfiles.PersonName.FamilyName^1",
+            "HrxmlProfiles.PersonName.GivenName^1",
+            "HrxmlProfiles.Location^1",
+            "HrxmlProfiles.ExecutiveSummary^1",
+            "HrxmlProfiles.CandidateEducations.OrganizationName^1",
+            "HrxmlProfiles.CandidateEducations.EducationDegree.DegreeMajor^1",
+            "HrxmlProfiles.CandidateEducations.EducationDegree.DegreeName^1",
+            "HrxmlProfiles.CandidateEmployments.OrganizationName^1",
+            "HrxmlProfiles.CandidateEmployments.PositionHistory.PositionTitle^1",
+            "HrxmlProfiles.CandidateEmployments.PositionHistory.Description^1",
+            "RecruiterDocuments.ExtractedContent^1"
+          ],
+          "default_operator": "and",
+          "phrase_slop": 0.0,
+          "auto_generate_phrase_queries": true
+        }
+      },
+      "filter": {
+        "and": {
+          "filters": [
+            {
+              "term": {
+                "OrganizationProfile.OrganizationId": "23"
+              }
+            },
+            {
+              "and": {
+                "filters": [
+                  {
+                    "geo_distance": {
+                      "distance": "50mi",
+                      "Profile.PersonalDetail.Location.Coordinates": "-36.8484597, 174.7633315"
+                    }
+                  },
+                  {
+                    "fquery": {
+                      "query": {
+                        "query_string": {
+                          "query": "2",
+                          "fields": [
+                            "OrganizationProfile.CandidateType"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "and": {
+                      "filters": [
+                        {
+                          "or": {
+                            "filters": [
+                              {
+                                "term": {
+                                  "OrganizationProfile.Student": "true"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "and": {
+                            "filters": [
+                              {
+                                "term": {
+                                  "OrganizationProfile.Unsubscribed": "false"
+                                }
+                              },
+                              {
+                                "term": {
+                                  "OrganizationProfile.Fired": "false"
+                                }
+                              },
+                              {
+                                "term": {
+                                  "OrganizationProfile.NoCall": "false"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

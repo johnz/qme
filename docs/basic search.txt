@@ -1,0 +1,774 @@
+POST http://westqa07.findly.com:9200/combinedprofiles_alias/CombinedProfile/_search?preference=-400821198 HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Host: westqa07.findly.com:9200
+X-NewRelic-ID: UAIEUlVVGwEGXVJaAwg=
+X-NewRelic-Transaction: PxQEUFEgCQYCVFkhBwFzVSEHFB8EBw8RVT8=
+Content-Length: 3371
+
+{
+  "from": 0,
+  "size": 24,
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "query": "john* zhao*",
+          "fields": [
+            "Profile.ProfessionalDetail.WorkHistories.Description^1",
+            "Profile.ProfessionalDetail.WorkHistories.Description.CustomAnalyzer^1",
+            "Profile.ProfessionalDetail.WorkHistories.Employer^1",
+            "Profile.ProfessionalDetail.WorkHistories.Employer.CustomAnalyzer^1",
+            "Profile.ProfessionalDetail.WorkHistories.JobTitle^1",
+            "Profile.ProfessionalDetail.WorkHistories.JobTitle.CustomAnalyzer^1",
+            "Profile.PersonalDetail.Location.City^4",
+            "Profile.PersonalDetail.Location.Country^4",
+            "Profile.PersonalDetail.Location.PostCode^1",
+            "Profile.PersonalDetail.Location.State^4",
+            "Profile.PersonalDetail.Phone^0.5",
+            "Profile.PersonalDetail.FirstName^1",
+            "Profile.PersonalDetail.LastName^4",
+            "Profile.PersonalDetail.Email^0.5",
+            "OrganizationProfile.JoinCampaign^1",
+            "OrganizationProfile.Campaigns.Name^1",
+            "OrganizationProfile.RecruiterCampaigns.Name^1",
+            "OrganizationProfile.Notes.Content^4",
+            "OrganizationProfile.Notes.Content.CustomAnalyzer^4",
+            "OrganizationProfile.Tags^1",
+            "HrxmlProfiles.Headline^1",
+            "HrxmlProfiles.PersonName.FamilyName^1",
+            "HrxmlProfiles.PersonName.GivenName^1",
+            "HrxmlProfiles.Location^1",
+            "HrxmlProfiles.ExecutiveSummary^1",
+            "HrxmlProfiles.CandidateEducations.OrganizationName^1",
+            "HrxmlProfiles.CandidateEducations.EducationDegree.DegreeMajor^1",
+            "HrxmlProfiles.CandidateEducations.EducationDegree.DegreeName^1",
+            "HrxmlProfiles.CandidateEmployments.OrganizationName^1",
+            "HrxmlProfiles.CandidateEmployments.PositionHistory.PositionTitle^1",
+            "HrxmlProfiles.CandidateEmployments.PositionHistory.Description^1",
+            "RecruiterDocuments.ExtractedContent^1"
+          ],
+          "default_operator": "and",
+          "phrase_slop": 0.0,
+          "auto_generate_phrase_queries": true
+        }
+      },
+      "filter": {
+        "and": {
+          "filters": [
+            {
+              "term": {
+                "OrganizationProfile.OrganizationId": "23"
+              }
+            },
+            {
+              "and": {
+                "filters": [
+                  {
+                    "and": {
+                      "filters": [
+                        {
+                          "term": {
+                            "OrganizationProfile.Unsubscribed": "false"
+                          }
+                        },
+                        {
+                          "term": {
+                            "OrganizationProfile.Fired": "false"
+                          }
+                        },
+                        {
+                          "term": {
+                            "OrganizationProfile.NoCall": "false"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
+
+////////////////////////////////////////////////////
+
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Content-Length: 12399
+
+{
+  "took": 2,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "failed": 0
+  },
+  "hits": {
+    "total": 3,
+    "max_score": 11.082476,
+    "hits": [
+      {
+        "_index": "waggle_profiles_v12",
+        "_type": "CombinedProfile",
+        "_id": "2ead8afd-45b3-4526-93b1-7a3e91cceb5e/acb10870-bee4-4ae9-95cd-f08dc00a0177",
+        "_score": 11.082476,
+        "_source": {
+          "RecruiterDocuments": [],
+          "_id": "2ead8afd-45b3-4526-93b1-7a3e91cceb5e/acb10870-bee4-4ae9-95cd-f08dc00a0177",
+          "OrganizationProfile": {
+            "ReferringUrl": null,
+            "Campaigns": [],
+            "LastUpdated": "2014-04-16T00:00:00.000Z",
+            "JoinCampaign": null,
+            "RecruiterCampaigns": [
+              {
+                "Name": "Accounting Clerk",
+                "AddedAt": "2014-01-17T03:08:40.727Z"
+              }
+            ],
+            "CandidateType": 1,
+            "Profile": {
+              "_id": "2ead8afd-45b3-4526-93b1-7a3e91cceb5e",
+              "ExistingProfileId": 759614
+            },
+            "OrganizationId": 23,
+            "NoCall": false,
+            "Notes": [
+              {
+                "_id": "a9b10f9c-c4c1-09f3-0000-0000c97463a4",
+                "AuthorId": "982e4d48-d09f-42ab-a0ea-e12e81765a7f",
+                "Author": "Robert Too",
+                "Created": "2014-01-15T04:25:50.000Z",
+                "NoteType": 0,
+                "Content": "Has a great name"
+              },
+              {
+                "_id": "266a8d53-e2c6-ac3a-0100-000038e597ac",
+                "AuthorId": "301dcbbd-5e77-4691-b332-48790911437f",
+                "Author": "Fin Dly",
+                "Created": "2014-01-17T02:54:59.000Z",
+                "NoteType": 1,
+                "Content": "111111"
+              },
+              {
+                "_id": "266a8d53-af46-a297-0100-00003e6f0643",
+                "AuthorId": "301dcbbd-5e77-4691-b332-48790911437f",
+                "Author": "Fin Dly",
+                "Created": "2014-01-17T02:55:08.000Z",
+                "NoteType": 1,
+                "Content": "3333"
+              },
+              {
+                "_id": "424e8f69-a923-633d-0100-00009c749d01",
+                "AuthorId": "13aac845-69e4-4717-a366-381921671c3b",
+                "Author": "Ondrej Za",
+                "Created": "2014-04-09T00:40:21.000Z",
+                "NoteType": 1,
+                "Content": "notes to 6517 people"
+              },
+              {
+                "_id": "f0a336f5-f429-5b4a-0000-00004933ea13",
+                "AuthorId": "e9cb7548-9e68-4377-b3e8-87eefecf60ca",
+                "Author": "Sharad Kumar",
+                "Created": "2014-04-15T10:05:13.000Z",
+                "NoteType": 0,
+                "Content": "hi"
+              }
+            ],
+            "Student": true,
+            "Source": "",
+            "Tags": [
+              "sample_templat_1",
+              "GWs Demo people",
+              "aaa",
+              "John",
+              "6517-09april",
+              "6517"
+            ],
+            "Fired": false,
+            "_id": "acb10870-bee4-4ae9-95cd-f08dc00a0177",
+            "LastJoined": "2013-06-11T23:22:02.732Z",
+            "FirstJoined": "2013-06-11T23:21:40.883Z",
+            "Veteran": false,
+            "Flags": [],
+            "Unsubscribed": false,
+            "Version": 5
+          },
+          "Profile": {
+            "PhotoUrl50": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/759/614/50.jpg",
+            "PhotoUrl80": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/759/614/80.jpg",
+            "Organizations": [
+              {
+                "_id": 100,
+                "IsFollowing": true,
+                "StartFollow": "2013-06-25T20:43:27.383Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 23,
+                "IsFollowing": true,
+                "StartFollow": "2013-06-11T23:21:40.883Z",
+                "EndFollow": null
+              }
+            ],
+            "EmploymentStatus": 0,
+            "PhotoUrl140": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/759/614/140.jpg",
+            "PersonalDetail": {
+              "Phone": null,
+              "Email": "johnz@findly.com",
+              "Location": {
+                "State": null,
+                "PostCode": null,
+                "Address": "Auckland, New Zealand",
+                "Country": "NZ",
+                "City": null,
+                "Coordinates": [
+                  174.76333150000005,
+                  -36.8484597
+                ]
+              },
+              "FirstName": "John",
+              "HighestEducationLevel": 3,
+              "LastName": "Zhao"
+            },
+            "ProfessionalDetail": {
+              "Education": [],
+              "WorkHistories": [
+                {
+                  "Employer": "Findly",
+                  "JobTitle": "Senior Web Developer",
+                  "Description": null,
+                  "StartDate": null,
+                  "EndDate": null,
+                  "IsCurrent": true,
+                  "StartYear": null,
+                  "Duration": 0
+                },
+                {
+                  "Employer": "Findly",
+                  "JobTitle": "Senior Web Developer",
+                  "Description": null,
+                  "StartDate": "2010-01-01T00:00:00.000Z",
+                  "EndDate": null,
+                  "IsCurrent": false,
+                  "StartYear": null,
+                  "Duration": 0
+                },
+                {
+                  "Employer": "tvm nexues",
+                  "JobTitle": "Web Developer",
+                  "Description": null,
+                  "StartDate": "2008-01-01T00:00:00.000Z",
+                  "EndDate": "2010-12-31T00:00:00.000Z",
+                  "IsCurrent": false,
+                  "StartYear": null,
+                  "Duration": 0
+                }
+              ],
+              "Interests": [
+                {
+                  "_id": 9,
+                  "Title": "Information Technology"
+                }
+              ]
+            },
+            "LastEngagement": "2014-05-31T01:54:33.925Z",
+            "_id": "2ead8afd-45b3-4526-93b1-7a3e91cceb5e",
+            "PhotoUrl220": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/759/614/140.jpg",
+            "SocialDetail": {
+              "GooglePlus": "https://plus.google.com/118339676488858734597",
+              "Facebook": null,
+              "LinkedIn": null,
+              "Twitter": null
+            },
+            "PhotoUrl": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/759/614/140.jpg",
+            "LastModified": "2014-05-31T01:54:33.925Z",
+            "Version": 5,
+            "ShortCode": "rxem91",
+            "_t": "Profile",
+            "CoverLetters": null,
+            "TagLine": null,
+            "ExistingProfileId": 759614
+          },
+          "HrxmlProfiles": [
+            {
+              "_id": "2ead8afd-45b3-4526-93b1-7a3e91cceb5e_google+",
+              "PersonName": {
+                "GivenName": "John",
+                "FamilyName": "Zhao"
+              },
+              "ExecutiveSummary": null,
+              "CandidateEducations": [],
+              "CandidateEmployments": [
+                {
+                  "IndustryCode": null,
+                  "OrganizationName": "Findly",
+                  "PositionHistory": {
+                    "PositionTitle": "Senior Web Developer",
+                    "PositionLocation": null,
+                    "Description": null,
+                    "EmploymentPeriod": {
+                      "StartDate": {
+                        "DateText": "2010-01-01"
+                      },
+                      "EndDate": {
+                        "DateText": ""
+                      }
+                    },
+                    "UserArea": null
+                  },
+                  "UserArea": null
+                },
+                {
+                  "IndustryCode": null,
+                  "OrganizationName": "tvm nexues",
+                  "PositionHistory": {
+                    "PositionTitle": "Web Developer",
+                    "PositionLocation": null,
+                    "Description": null,
+                    "EmploymentPeriod": {
+                      "StartDate": {
+                        "DateText": "2008-01-01"
+                      },
+                      "EndDate": {
+                        "DateText": "2010-12-31"
+                      }
+                    },
+                    "UserArea": null
+                  },
+                  "UserArea": null
+                }
+              ],
+              "Headline": null
+            }
+          ]
+        }
+      },
+      {
+        "_index": "waggle_profiles_v12",
+        "_type": "CombinedProfile",
+        "_id": "10cf562c-fa14-49fa-be8b-0671ab102560/caa3ae0f-20c7-4d98-bbc6-0639661c9aa5",
+        "_score": 11.082476,
+        "_source": {
+          "RecruiterDocuments": [],
+          "_id": "10cf562c-fa14-49fa-be8b-0671ab102560/caa3ae0f-20c7-4d98-bbc6-0639661c9aa5",
+          "OrganizationProfile": {
+            "ReferringUrl": null,
+            "Campaigns": [
+              {
+                "Name": "FDLY-Email",
+                "AddedAt": "2012-12-31T18:38:52.684Z"
+              },
+              {
+                "Name": "JA-UnSkillv1",
+                "AddedAt": "2012-12-31T18:38:53.168Z"
+              },
+              {
+                "Name": "Job-Alerts",
+                "AddedAt": "2012-12-31T18:38:52.903Z"
+              }
+            ],
+            "LastUpdated": "2014-04-16T00:00:00.000Z",
+            "JoinCampaign": null,
+            "RecruiterCampaigns": [],
+            "CandidateType": 1,
+            "Profile": {
+              "_id": "10cf562c-fa14-49fa-be8b-0671ab102560",
+              "ExistingProfileId": 734424
+            },
+            "OrganizationId": 23,
+            "NoCall": false,
+            "Notes": [
+              {
+                "_id": "a9b10f9c-c4c1-09f3-0000-0000c97463a4",
+                "AuthorId": "982e4d48-d09f-42ab-a0ea-e12e81765a7f",
+                "Author": "Robert Too",
+                "Created": "2014-01-15T04:25:50.000Z",
+                "NoteType": 0,
+                "Content": "Has a great name"
+              },
+              {
+                "_id": "424e8f69-a923-633d-0100-00009c749d01",
+                "AuthorId": "13aac845-69e4-4717-a366-381921671c3b",
+                "Author": "Ondrej Za",
+                "Created": "2014-04-09T00:40:21.000Z",
+                "NoteType": 1,
+                "Content": "notes to 6517 people"
+              }
+            ],
+            "Student": false,
+            "Source": "",
+            "Tags": [
+              "sample_templat_1",
+              "GWs Demo people",
+              "aaa",
+              "John",
+              "6517-09april",
+              "6517"
+            ],
+            "Fired": false,
+            "_id": "caa3ae0f-20c7-4d98-bbc6-0639661c9aa5",
+            "LastJoined": "2012-12-28T01:14:49.542Z",
+            "FirstJoined": "2012-12-28T01:10:55.365Z",
+            "Veteran": false,
+            "Flags": [],
+            "Unsubscribed": false,
+            "Version": 3
+          },
+          "Profile": {
+            "PhotoUrl50": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/734/424/50.jpg",
+            "PhotoUrl80": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/734/424/80.jpg",
+            "Organizations": [
+              {
+                "_id": 23,
+                "IsFollowing": true,
+                "StartFollow": "2012-12-28T01:10:55.365Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 118,
+                "IsFollowing": true,
+                "StartFollow": "2013-05-16T03:18:58.724Z",
+                "EndFollow": null
+              }
+            ],
+            "EmploymentStatus": 0,
+            "PhotoUrl140": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/734/424/140.jpg",
+            "PersonalDetail": {
+              "Phone": null,
+              "Email": "johnz@findly.com",
+              "Location": {
+                "State": null,
+                "PostCode": null,
+                "Address": null,
+                "Country": "US",
+                "City": null,
+                "Coordinates": [
+                  -122.41941550000001,
+                  37.7749295
+                ]
+              },
+              "FirstName": "John",
+              "HighestEducationLevel": 1,
+              "LastName": "Zhao"
+            },
+            "ProfessionalDetail": {
+              "Education": [],
+              "WorkHistories": [
+                {
+                  "Employer": "ABC",
+                  "JobTitle": "Web Developer",
+                  "Description": null,
+                  "StartDate": null,
+                  "EndDate": null,
+                  "IsCurrent": true,
+                  "StartYear": null,
+                  "Duration": 0
+                },
+                {
+                  "Employer": "Apple",
+                  "JobTitle": "Web developer",
+                  "Description": "",
+                  "StartDate": null,
+                  "EndDate": null,
+                  "IsCurrent": false,
+                  "StartYear": null,
+                  "Duration": 0
+                }
+              ],
+              "Interests": [
+                {
+                  "_id": 1,
+                  "Title": "Accounting"
+                },
+                {
+                  "_id": 19,
+                  "Title": "Jobs for Recent Grads"
+                },
+                {
+                  "_id": 2,
+                  "Title": "Administration"
+                },
+                {
+                  "_id": 3,
+                  "Title": "Advertising/Creative"
+                }
+              ]
+            },
+            "LastEngagement": "2013-05-16T03:19:09.599Z",
+            "_id": "10cf562c-fa14-49fa-be8b-0671ab102560",
+            "SocialDetail": {
+              "GooglePlus": null,
+              "Facebook": null,
+              "LinkedIn": "http://www.linkedin.com/pub/john-zhao/61/ba1/3a0",
+              "Twitter": null
+            },
+            "PhotoUrl220": null,
+            "PhotoUrl": null,
+            "LastModified": "0001-01-01T00:00:00.000Z",
+            "Version": 2,
+            "ShortCode": "ob21eb",
+            "_t": "Profile",
+            "CoverLetters": null,
+            "TagLine": null,
+            "ExistingProfileId": 734424
+          },
+          "HrxmlProfiles": [
+            {
+              "_id": "10cf562c-fa14-49fa-be8b-0671ab102560_linkedin",
+              "PersonName": {
+                "GivenName": "John",
+                "FamilyName": "Zhao"
+              },
+              "Location": "New Zealand",
+              "ExecutiveSummary": "",
+              "CandidateEducations": [],
+              "CandidateEmployments": [
+                {
+                  "IndustryCode": null,
+                  "OrganizationName": "Apple",
+                  "PositionHistory": {
+                    "PositionTitle": "Web developer",
+                    "PositionLocation": null,
+                    "Description": "",
+                    "EmploymentPeriod": {
+                      "StartDate": {
+                        "DateText": ""
+                      },
+                      "EndDate": {
+                        "DateText": ""
+                      }
+                    },
+                    "UserArea": null
+                  },
+                  "UserArea": null
+                }
+              ],
+              "Headline": "Web developer at Apple"
+            }
+          ]
+        }
+      },
+      {
+        "_index": "waggle_profiles_v12",
+        "_type": "CombinedProfile",
+        "_id": "6b3916fd-0e0e-4383-8377-688eab9a39d5/8f6eba2c-bd49-48d2-a732-3825f59ae02b",
+        "_score": 11.082476,
+        "_source": {
+          "RecruiterDocuments": [],
+          "_id": "6b3916fd-0e0e-4383-8377-688eab9a39d5/8f6eba2c-bd49-48d2-a732-3825f59ae02b",
+          "OrganizationProfile": {
+            "ReferringUrl": null,
+            "Campaigns": [],
+            "LastUpdated": "2014-12-12T03:36:51.543Z",
+            "JoinCampaign": null,
+            "RecruiterCampaigns": [],
+            "CandidateType": 0,
+            "Profile": {
+              "_id": "6b3916fd-0e0e-4383-8377-688eab9a39d5",
+              "ExistingProfileId": 734438
+            },
+            "OrganizationId": 23,
+            "NoCall": false,
+            "Notes": [
+              {
+                "_id": "18e34028-b83c-0d3e-0100-000081e02374",
+                "AuthorId": "ee98057c-6b7b-455e-bd94-9d7cb2880e0a",
+                "Author": "Gee Dubtwe",
+                "Created": "2013-11-13T04:00:28.000Z",
+                "NoteType": 1,
+                "Content": "An important note"
+              },
+              {
+                "_id": "a9b10f9c-c4c1-09f3-0000-0000c97463a4",
+                "AuthorId": "982e4d48-d09f-42ab-a0ea-e12e81765a7f",
+                "Author": "Robert Too",
+                "Created": "2014-01-15T04:25:50.000Z",
+                "NoteType": 0,
+                "Content": "Has a great name"
+              },
+              {
+                "_id": "424e8f69-a923-633d-0100-00009c749d01",
+                "AuthorId": "13aac845-69e4-4717-a366-381921671c3b",
+                "Author": "Ondrej Za",
+                "Created": "2014-04-09T00:40:21.000Z",
+                "NoteType": 1,
+                "Content": "notes to 6517 people"
+              }
+            ],
+            "Student": false,
+            "Source": "",
+            "Tags": [
+              "sample_templat_1",
+              "GWs Demo people",
+              "aaa",
+              "John",
+              "6517-09april",
+              "6517"
+            ],
+            "Fired": false,
+            "_id": "8f6eba2c-bd49-48d2-a732-3825f59ae02b",
+            "LastJoined": "2013-05-16T03:10:57.304Z",
+            "FirstJoined": "2012-12-28T01:00:09.435Z",
+            "Veteran": false,
+            "Flags": [],
+            "Unsubscribed": false,
+            "Version": 21
+          },
+          "Profile": {
+            "PhotoUrl50": "//findlytest7.blob.core.windows.net/profilephoto/manual_50x50.jpg",
+            "PhotoUrl80": "//findlytest7.blob.core.windows.net/profilephoto/manual_80x80.jpg",
+            "Organizations": [
+              {
+                "_id": 15,
+                "IsFollowing": true,
+                "StartFollow": "2013-08-30T01:34:51.255Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 165,
+                "IsFollowing": true,
+                "StartFollow": "2013-11-01T00:25:03.346Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 88,
+                "IsFollowing": true,
+                "StartFollow": "2014-03-02T21:11:01.928Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 23,
+                "IsFollowing": true,
+                "StartFollow": "2012-12-28T01:00:09.435Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 197,
+                "IsFollowing": true,
+                "StartFollow": "2014-05-08T02:06:55.030Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 9,
+                "IsFollowing": true,
+                "StartFollow": "2014-05-30T03:16:16.544Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 29,
+                "IsFollowing": true,
+                "StartFollow": "2014-09-22T22:36:21.463Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 215,
+                "IsFollowing": true,
+                "StartFollow": "2014-09-22T22:36:42.543Z",
+                "EndFollow": null
+              },
+              {
+                "_id": 130,
+                "IsFollowing": true,
+                "StartFollow": "2014-10-24T02:01:23.998Z",
+                "EndFollow": null
+              }
+            ],
+            "EmploymentStatus": 0,
+            "PhotoUrl140": "//findlytest7.blob.core.windows.net/profilephoto/manual_140x140.jpg",
+            "PersonalDetail": {
+              "Phone": null,
+              "Email": "johnz@findly.com",
+              "Location": {
+                "State": "Auckland",
+                "PostCode": null,
+                "Address": "1010 Great North Road, Point Chevalier, Auckland 1022, New Zealand",
+                "Country": "NZ",
+                "City": "Auckland",
+                "Coordinates": [
+                  0,
+                  0
+                ]
+              },
+              "FirstName": "john",
+              "HighestEducationLevel": 3,
+              "LastName": "zhao"
+            },
+            "ProfessionalDetail": {
+              "Education": [
+                {
+                  "OrganizationName": null,
+                  "CourseName": null,
+                  "CourseMajor": null,
+                  "StartDate": null,
+                  "EndDate": null,
+                  "EndYear": null,
+                  "Level": 3
+                },
+                {
+                  "OrganizationName": null,
+                  "CourseName": null,
+                  "CourseMajor": null,
+                  "StartDate": null,
+                  "EndDate": null,
+                  "EndYear": "2001-01-31T11:00:00.000Z",
+                  "Level": 1
+                }
+              ],
+              "WorkHistories": [
+                {
+                  "Employer": null,
+                  "JobTitle": null,
+                  "Description": null,
+                  "StartDate": null,
+                  "EndDate": null,
+                  "IsCurrent": false,
+                  "StartYear": null,
+                  "Duration": 0
+                },
+                {
+                  "Employer": "FINDLY",
+                  "JobTitle": "web developer",
+                  "Description": null,
+                  "StartDate": null,
+                  "EndDate": null,
+                  "IsCurrent": true,
+                  "StartYear": null,
+                  "Duration": 0
+                }
+              ],
+              "Interests": []
+            },
+            "IsDeactivated": false,
+            "LastEngagement": "2014-12-15T02:02:30.245Z",
+            "_id": "6b3916fd-0e0e-4383-8377-688eab9a39d5",
+            "ProfileStatus": 0,
+            "PhotoUrl220": "//findlytest7.blob.core.windows.net/profilephoto/manual_220x220.jpg",
+            "SocialDetail": {
+              "GooglePlus": null,
+              "Facebook": null,
+              "LinkedIn": null,
+              "Twitter": null
+            },
+            "PhotoUrl": "//findlytest7.blob.core.windows.net/profilephoto/manual_500x500.jpg",
+            "LastModified": "2014-12-15T02:02:30.245Z",
+            "Version": 26,
+            "ShortCode": "sj0mpb",
+            "_t": "Profile",
+            "CoverLetters": null,
+            "TagLine": null,
+            "ExistingProfileId": 734438
+          },
+          "HrxmlProfiles": []
+        }
+      }
+    ]
+  }
+}
