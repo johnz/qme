@@ -24,8 +24,8 @@ var client = new elasticsearch.Client({
     log: 'trace'
 });
 
-//percolateRegisterQuery();
-percolateExistingDocument('f1b8f1ee-aef6-43a0-9c2a-636dce1dbb3e/7b6e651d-a3de-4c55-b2f1-028574d2615f');
+percolateRegisterQuery();
+//percolateExistingDocument('f1b8f1ee-aef6-43a0-9c2a-636dce1dbb3e/7b6e651d-a3de-4c55-b2f1-028574d2615f');
 //search();
 
 
@@ -49,7 +49,7 @@ function percolateRegisterQuery() {
     client.index({
         index: 'qme_profiles',
         type: '.percolator',
-        id: 'q2',
+        id: 'q3',
         body: {
             // This query will be run against documents sent to percolate
             query: {

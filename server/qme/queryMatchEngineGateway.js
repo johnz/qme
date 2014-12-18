@@ -1,6 +1,6 @@
 var Q = require('q');
 var elasticsearch = require('elasticsearch');
-var mongoose = require('mongoose');
+var mongoose = require('mongoose-q')();
 var uuid = require('node-uuid');
 
 
@@ -11,7 +11,7 @@ module.exports = {
 
 var esIndex = 'qme_profiles';
 var esType = 'CombinedProfile';
-var mongoDbUri = 'mongodb://findlyauth:dU6Upr6S@westqa07.findly.com/qme?replicaSet=qa-rs0&w=1&ssl=true&sslverifycertificate=false&connectTimeoutMS=99999&socketTimeoutMS=999999&maxIdleTimeMS=60000';    
+var mongoDbUri = 'mongodb://findlyauth:dU6Upr6S@westqa07.findly.com?replicaSet=qa-rs0&w=1&ssl=true&sslverifycertificate=false&connectTimeoutMS=99999&socketTimeoutMS=999999&maxIdleTimeMS=60000';    
 var esUri = 'westqa07.findly.com:9200';
 var esClient;
 var QueryMetadata;
@@ -24,10 +24,11 @@ function activate(){
         log: 'trace'
     });
 
-    mongoose.connect(mongoDbUri);
-    resisterMongoSchema(); 
+    var db = mongoose.createConnection(mongoDbUri);
+    qmeDb = db.useDb('auth');
+    resisterMongoSchema(qmeDb); 
 }
-    function resisterMongoSchema(){
+    function resisterMongoSchema(db){
         var querymetaSchema = new mongoose.Schema({
             _id: String,
             OrganizationId: Number,
@@ -36,9 +37,9 @@ function activate(){
             RecruiterPhotoUrl: String,
             RecruiterEmail: String,
             CreatedOn: Date
-        });
+        }, {collection: 'QueryMetadata'});
 
-        QueryMetadata = mongoose.model('QueryMetadata', querymetaSchema);
+        QueryMetadata = db.model('QueryMetadata', querymetaSchema);
     }
 
 
@@ -58,25 +59,29 @@ function matchExistingDocument(id) {
 }
 
 function registerQueryAndStoreMetadata(requestArgs) {
-    var deferred = Q.defer();
     var queryId = uuid.v1();
-
-    return esClient.index({
+    var query = {
         index: esIndex,
-        type: esType,
+        type: '.percolator',
         id: queryId,
         body: {
             // This query will be run against documents sent to percolate
             query: requestArgs.query
         }
-    }).then(function(result){
-        QueryMetadata.create({
-            _id: queryId,
-            OrganizationId: requestArgs.metadata.organizationId,
-            RecruiterId: requestArgs.metadata.recruiterId,
-            RecruiterPhotoUrl: requestArgs.metadata.recruiterPhotoUrl,
-            RecruiterEmail: requestArgs.metadata.recruiterEmail,
-            CreatedOn: requestArgs.metadata.createdOn
-        });
+    };
+
+    return esClient.index(query).then(function(){
+        return storeMetaData(queryId, requestArgs.metadata);
     });
 }
+    
+    function storeMetaData(queryId, metadata){
+        return QueryMetadata.create({
+            _id: queryId,
+            OrganizationId: metadata.organizationId,
+            RecruiterId: metadata.recruiterId,
+            RecruiterPhotoUrl: metadata.recruiterPhotoUrl,
+            RecruiterEmail: metadata.recruiterEmail,
+            CreatedOn: metadata.createdOn
+        });
+    }

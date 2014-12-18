@@ -1,4 +1,4 @@
-var QME = require('./queryMatchEngine');
+var QME = require('../queryMatchEngine');
 
 var query = {
                 "filtered": {
@@ -27,4 +27,8 @@ QME.registerQuery({
         recruiterEmail: 'sara_ney_2@hotmail.com',
         createdOn: Date.now()
     }
+}).then(function(result){
+    console.log('result',result);
+},function(error){
+    console.log('error',error);
 });

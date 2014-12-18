@@ -32,9 +32,7 @@ function registerQuery(requestArgs){
 
     requestArgs.query = removeOrganizationFilter(requestArgs.query);
 
-    deferred = registerQueryAndStoreMetadata(requestArgs);
-        
-    return deferred.promise;
+    return registerQueryAndStoreMetadata(requestArgs);
 }
 
     function isValidQuery(requestArgs){
