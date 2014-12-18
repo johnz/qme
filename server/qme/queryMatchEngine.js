@@ -80,8 +80,9 @@ function matchProfile(id){
     
     function generateMatchProfileResponse(result){
         var dedupledRecruiters = _.uniq(result, 'RecruiterId');
+        var dedupledPhotos = _.uniq(result, 'RecruiterPhotoUrl');
         var dedupledOrgs = _.uniq(result, 'OrganizationId');
-        var recruiterPhotos = _.pluck(dedupledRecruiters, 'RecruiterPhotoUrl');
+        var recruiterPhotos = _.pluck(dedupledPhotos, 'RecruiterPhotoUrl');
         var orgnizations = _.pluck(dedupledOrgs, 'OrganizationName');
 
         return {
@@ -115,4 +116,16 @@ function matchProfile(id){
             "__v": 0
         }
     ]
+
+    sample final result
+    {
+        "totalRecruiters": 1,
+        "totalOrganizations": 1,
+        "recruiterPhotos": [
+            "//findlytestrefresh.blob.core.windows.net/profilephoto/000/413/266/80.jpg"
+        ],
+        "organizations": [
+            "Sears"
+        ]
+    }
 */
