@@ -88,8 +88,34 @@ function matchProfile(){
     // 80faaa8e-e94b-4b9e-8f3f-8f8ddab5ab77/757ebfa1-2803-4bb2-b012-b6de165119c9  //gmail.com
     var id = "edfc57dc-b69e-4e34-9acc-fdfa2016fd35/60c9a3d3-5dba-4d98-9ba3-490198b8be5c";  //gmail.com
     QME.matchProfile(id).then(function(result){
-        console.log('matchProfile result',JSON.stringify(result, null,' '));
+        console.log('matchProfile result', JSON.stringify(result, null, ' '));
     },function(error){
-        console.log('matchProfile error',error);
+        console.log('matchProfile error', error);
     });    
 }
+
+
+
+/*
+    sample match result:
+    [
+        {
+            "_id": "86f65330-8660-11e4-988d-e7fed3fe2e4d",
+            "OrganizationId": 23,
+            "RecruiterId": "f25c9253-47f0-4cb8-941d-99f2b4dae528",
+            "RecruiterPhotoUrl": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/413/266/80.jpg",
+            "RecruiterEmail": "sara_ney_2@hotmail.com",
+            "CreatedOn": "2014-12-18T02:49:46.723Z",
+            "__v": 0
+        },
+        {
+            "_id": "899ff9f0-8661-11e4-b080-137d4e517cb8",
+            "OrganizationId": 23,
+            "RecruiterId": "f25c9253-47f0-4cb8-941d-99f2b4dae528",
+            "RecruiterPhotoUrl": "//findlytestrefresh.blob.core.windows.net/profilephoto/000/413/266/80.jpg",
+            "RecruiterEmail": "sara_ney_2@hotmail.com",
+            "CreatedOn": "2014-12-18T02:57:00.687Z",
+            "__v": 0
+        }
+    ]
+*/

@@ -1,4 +1,4 @@
-var Q = require('q');
+var _ = require('lodash');
 var elasticsearch = require('elasticsearch');
 var mongoose = require('mongoose-q')();
 var uuid = require('node-uuid');
@@ -51,21 +51,19 @@ function matchExistingProfile(id) {
         track_scores: true
     };
 
-    return esClient.percolate(query);
-    /*
-    , function(error, response) {
-        // response would equal
-        // {
-        //   ok:true,
-        //   matches: [ "alert-1" ]
-        // }
-        if(error)
-            console.log(error);
-
-        console.log("matchExistingDocument", response);
-    }
-    */
+    return esClient.percolate(query).then(function(result){
+        return extractMetaData(result);
+    });
 }
+
+    function extractMetaData(result){
+        var ids = _.pluck(result.matches, '_id');
+
+        return QueryMetadata.find()
+                            .where('_id')
+                            .in(ids)
+                            .exec();
+    }
 
 function registerQueryAndStoreMetadata(requestArgs) {
     var queryId = uuid.v1();
@@ -88,6 +86,7 @@ function registerQueryAndStoreMetadata(requestArgs) {
         return QueryMetadata.create({
             _id: queryId,
             OrganizationId: metadata.organizationId,
+            OrganizationName: metadata.organizationName,
             RecruiterId: metadata.recruiterId,
             RecruiterPhotoUrl: metadata.recruiterPhotoUrl,
             RecruiterEmail: metadata.recruiterEmail,
