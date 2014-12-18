@@ -5,7 +5,7 @@ var uuid = require('node-uuid');
 
 
 module.exports = {
-    matchExistingDocument: matchExistingDocument,
+    matchExistingProfile: matchExistingProfile,
     registerQueryAndStoreMetadata: registerQueryAndStoreMetadata
 };
 
@@ -21,7 +21,7 @@ activate();
 function activate(){
     esClient = new elasticsearch.Client({
         host: esUri,
-        log: 'trace'
+        log: 'error'
     });
 
     var db = mongoose.createConnection(mongoDbUri);
@@ -43,19 +43,28 @@ function activate(){
     }
 
 
-function matchExistingDocument(id) {
-    esClient.percolate({
+function matchExistingProfile(id) {
+    var query = {
         index: esIndex,
         type: esType,
         id: id,
         track_scores: true
-    }, function(error, response) {
+    };
+
+    return esClient.percolate(query);
+    /*
+    , function(error, response) {
         // response would equal
         // {
         //   ok:true,
         //   matches: [ "alert-1" ]
         // }
-    });
+        if(error)
+            console.log(error);
+
+        console.log("matchExistingDocument", response);
+    }
+    */
 }
 
 function registerQueryAndStoreMetadata(requestArgs) {

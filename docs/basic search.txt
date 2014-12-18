@@ -7,8 +7,6 @@ X-NewRelic-Transaction: PxQEUFEgCQYCVFkhBwFzVSEHFB8EBw8RVT8=
 Content-Length: 3371
 
 {
-  "from": 0,
-  "size": 24,
   "query": {
     "filtered": {
       "query": {
@@ -51,44 +49,6 @@ Content-Length: 3371
           "default_operator": "and",
           "phrase_slop": 0.0,
           "auto_generate_phrase_queries": true
-        }
-      },
-      "filter": {
-        "and": {
-          "filters": [
-            {
-              "term": {
-                "OrganizationProfile.OrganizationId": "23"
-              }
-            },
-            {
-              "and": {
-                "filters": [
-                  {
-                    "and": {
-                      "filters": [
-                        {
-                          "term": {
-                            "OrganizationProfile.Unsubscribed": "false"
-                          }
-                        },
-                        {
-                          "term": {
-                            "OrganizationProfile.Fired": "false"
-                          }
-                        },
-                        {
-                          "term": {
-                            "OrganizationProfile.NoCall": "false"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
         }
       }
     }

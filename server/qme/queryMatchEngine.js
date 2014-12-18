@@ -3,7 +3,7 @@ var queryMatchEngineGateway = require('./queryMatchEngineGateway');
 
 module.exports = {
     registerQuery: registerQuery,
-    matchDocument: matchDocument
+    matchProfile: matchProfile
 };
 
 
@@ -64,7 +64,7 @@ function registerQuery(requestArgs){
         return queryMatchEngineGateway.registerQueryAndStoreMetadata(requestArgs);
     }
 
-function matchDocument(){
-    // return promise
+function matchProfile(id){
+    return queryMatchEngineGateway.matchExistingProfile(id);
 }
 
