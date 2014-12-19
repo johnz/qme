@@ -80,16 +80,16 @@ function matchProfile(id){
     
     function generateMatchProfileResponse(result){
         var dedupledRecruiters = _.uniq(result, 'RecruiterId');
-        var dedupledPhotos = _.uniq(result, 'RecruiterPhotoUrl');
         var dedupledOrgs = _.uniq(result, 'OrganizationId');
-        var recruiterPhotos = _.pluck(dedupledPhotos, 'RecruiterPhotoUrl');
+        var recruiterPhotos = _.pluck(dedupledRecruiters, 'RecruiterPhotoUrl');
         var orgnizations = _.pluck(dedupledOrgs, 'OrganizationName');
 
         return {
+            totalSearches: result.length,
             totalRecruiters: dedupledRecruiters.length,
             totalOrganizations: dedupledOrgs.length,
-            recruiterPhotos: recruiterPhotos,
-            organizations: orgnizations
+            organizations: orgnizations,
+            recruiterPhotos: recruiterPhotos
         };
     }
 

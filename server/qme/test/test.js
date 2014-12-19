@@ -10,7 +10,7 @@ function activate(){
             registerQuery();
             break;
         case 'match':
-            matchProfile();
+            matchProfile(argv.id);
             break;
         default:
             console.log('test --action [register|match]');
@@ -83,14 +83,18 @@ function registerQuery(){
     });    
 }
 
-function matchProfile(){
+function matchProfile(id){
     // edfc57dc-b69e-4e34-9acc-fdfa2016fd35/60c9a3d3-5dba-4d98-9ba3-490198b8be5c  //john zhao
     // 80faaa8e-e94b-4b9e-8f3f-8f8ddab5ab77/757ebfa1-2803-4bb2-b012-b6de165119c9  //gmail.com
-    var id = "edfc57dc-b69e-4e34-9acc-fdfa2016fd35/60c9a3d3-5dba-4d98-9ba3-490198b8be5c";  //gmail.com
+
+    if(!id){
+        id = "edfc57dc-b69e-4e34-9acc-fdfa2016fd35/60c9a3d3-5dba-4d98-9ba3-490198b8be5c";
+    }
+
     QME.matchProfile(id).then(function(result){
-        console.log('matchProfile result', JSON.stringify(result, null, ' '));
+        console.log(JSON.stringify(result, null, '  '));
     },function(error){
-        console.log('matchProfile error', error);
+        console.log(JSON.stringify(error, null, '  '));
     });    
 }
 
